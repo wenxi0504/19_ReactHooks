@@ -20,7 +20,7 @@ function Ingredients() {
       <section>
         <Search />
         {/* Need to add list here! */}
-        <IngredientList ingredients={userIngredients} onRemoveItem={ ()=>{}} />
+        <IngredientList ingredients={ userIngredients} />
       </section>
     </div>
   );

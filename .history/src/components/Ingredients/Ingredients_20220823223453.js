@@ -15,12 +15,12 @@ function Ingredients() {
   
   return (
     <div className="App">
-      <IngredientForm onAddIngredient={addIngredientHandler} />
+      <IngredientForm />
 
       <section>
         <Search />
         {/* Need to add list here! */}
-        <IngredientList ingredients={userIngredients} onRemoveItem={ ()=>{}} />
+        <IngredientList ingredients={ userIngredients} />
       </section>
     </div>
   );
