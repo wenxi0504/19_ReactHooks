@@ -35,10 +35,8 @@ const Search = React.memo(props => {
        
     }, 500);
 
-    //clean up the previous effect
-    return () => { 
-      clearTimeout(timer);
-    }
+    //clean up function
+    return () => { }
    },[enteredFilter,onLoadIngredients,inputRef])
 
 
