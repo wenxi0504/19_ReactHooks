@@ -7,24 +7,19 @@ import Search from './Search';
 function Ingredients() {
   const [userIngredients, setUserIngredients] = useState([]);
  
-  useEffect(() => {
-     fetch('https:xxx.firebase.com/ingredients.json').then(response => { 
+  useEffect(() => { });
+ 
+ fetch('https:xxx.firebase.com/ingredients.json').then(response => { 
       return response.json();
  }).then(responseData => { 
    const loadedIngredients = [];
    for (const key in responseData) { 
-     loadedIngredients.push(
-       {
-         id: key,
-         title: responseData[key].title,
-         amount:responseData[key].amount
-       } );
+     loadedIngredients.push();
+     
    }
-   setUserIngredients(loadedIngredients)
-    });
-   },[]);
- 
+      
 
+    });
 
  
  

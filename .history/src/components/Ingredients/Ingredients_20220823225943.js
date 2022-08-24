@@ -7,8 +7,9 @@ import Search from './Search';
 function Ingredients() {
   const [userIngredients, setUserIngredients] = useState([]);
  
-  useEffect(() => {
-     fetch('https:xxx.firebase.com/ingredients.json').then(response => { 
+  useEffect(() => { });
+ 
+ fetch('https:xxx.firebase.com/ingredients.json').then(response => { 
       return response.json();
  }).then(responseData => { 
    const loadedIngredients = [];
@@ -21,10 +22,9 @@ function Ingredients() {
        } );
    }
    setUserIngredients(loadedIngredients)
-    });
-   },[]);
- 
+      
 
+    });
 
  
  

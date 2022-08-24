@@ -22,7 +22,7 @@ function Ingredients() {
    }
    setUserIngredients(loadedIngredients)
     });
-   },[]);
+   });
  
 
 
