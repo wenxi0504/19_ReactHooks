@@ -21,10 +21,9 @@ const IngredientForm = React.memo(props => {
           <div className="form-control">
             <label htmlFor="title">Name</label>
             <input type="text" id="title" value={enteredTitle} onChange={event => {
-              // const newTitle = event.target.value;
-              // setEnteredTitle(preInputState => (
-              //   { title: newTitle, amount: preInputState.amount }))
-              setEnteredTitle(event.target.value)
+              const newTitle = event.target.value;
+              setEnteredTitle(preInputState => (
+                { title: newTitle, amount: preInputState.amount }))
             }} />
           </div>
           <div className="form-control">
