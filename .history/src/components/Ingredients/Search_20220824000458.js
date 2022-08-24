@@ -10,8 +10,8 @@ const Search = React.memo(props => {
 
   useEffect(() => {
     setTimeout(() => { 
-      if (enteredFilter === inputRef.current.value) { 
-        const query = enteredFilter.length === 0 ? '' : `?orderBy="title"&equalTo="${enteredFilter}"`;
+      if(enteredFilter===)
+       const query = enteredFilter.length === 0 ? '' : `?orderBy="title"&equalTo="${enteredFilter}"`;
     fetch('https:xxx.firebase.com/ingredients.json'+query).then(response => { 
       return response.json();
  }).then(responseData => { 
@@ -29,14 +29,10 @@ const Search = React.memo(props => {
    
     });
 
-
-
-      }
-       
     }, 500);
 
    
-   },[enteredFilter,onLoadIngredients,inputRef])
+   },[enteredFilter,onLoadIngredients])
 
 
 
