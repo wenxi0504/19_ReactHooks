@@ -17,7 +17,7 @@ function Ingredients() {
     }).then(responseData => { 
        response.json();
        setUserIngredients(preIngredient => [...preIngredient, {
-      id: responseData.name,...ingredient
+      id: Math.random().toString(),...ingredient
     }]);
 
     });
