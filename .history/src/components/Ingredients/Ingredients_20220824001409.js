@@ -52,8 +52,14 @@ function Ingredients() {
       method: 'DELETE',
        
     }).then(response => { 
-  setUserIngredients(preIngredient =>preIngredient.id !=ingredient.id)
-    })
+      return response.json();
+    }).then(responseData => { 
+       response.json();
+       setUserIngredients(preIngredient => [...preIngredient, {
+      id: responseData.name,...ingredient
+    }]);
+
+    });
 
   }
   
