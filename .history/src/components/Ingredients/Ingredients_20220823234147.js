@@ -24,9 +24,9 @@ function Ingredients() {
     });
    },[]);
  
-  const filteredIngredientsHandler = useCallback((filterIngredients) => {
+  const filteredIngredientsHandler = (filterIngredients) => {
     setUserIngredients(filterIngredients);
-  }, []);
+   }
 
 
  

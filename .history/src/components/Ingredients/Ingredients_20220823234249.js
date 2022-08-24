@@ -26,7 +26,7 @@ function Ingredients() {
  
   const filteredIngredientsHandler = useCallback((filterIngredients) => {
     setUserIngredients(filterIngredients);
-  }, []);
+   },[])
 
 
  
