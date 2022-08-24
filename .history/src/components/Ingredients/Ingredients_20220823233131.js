@@ -56,7 +56,7 @@ function Ingredients() {
       <IngredientForm onAddIngredient={addIngredientHandler} />
 
       <section>
-        <Search onLoadIngredients={filteredIngredientsHandler } />
+        <Search onLoadIngredients={ } />
         {/* Need to add list here! */}
         <IngredientList ingredients={userIngredients} onRemoveItem={ ()=>{}} />
       </section>

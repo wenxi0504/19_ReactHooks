@@ -4,12 +4,9 @@ import Card from '../UI/Card';
 import './Search.css';
 
 const Search = React.memo(props => {
-  const {onLoadIngredients } = props;
   const [enteredFilter, setEnteredFilter] = useState('');
-
   useEffect(() => {
-    const query = enteredFilter.length === 0 ? '' : `?orderBy="title"&equalTo="${enteredFilter}"`;
-    fetch('https:xxx.firebase.com/ingredients.json'+query).then(response => { 
+    fetch('https:xxx.firebase.com/ingredients.json').then(response => { 
       return response.json();
  }).then(responseData => { 
    const loadedIngredients = [];
@@ -21,11 +18,9 @@ const Search = React.memo(props => {
          amount:responseData[key].amount
        } );
    }
-   //....
-   onLoadIngredients(loadedIngredients);
-   
+   setUserIngredients(loadedIngredients)
     });
-   },[enteredFilter,onLoadIngredients])
+   },[enteredFilter])
 
 
 
