@@ -2,14 +2,11 @@ import React, { useEffect ,useCallback} from 'react';
 
 import IngredientForm from './IngredientForm';
 import IngredientList from './IngredientList';
-import ErrorModal from '../UI//ErrorModal';
 import Search from './Search';
 
 function Ingredients() {
   const [userIngredients, setUserIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
-
  
   useEffect(() => {
      fetch('https:xxx.firebase.com/ingredients.json').then(response => { 
@@ -58,31 +55,22 @@ function Ingredients() {
     fetch(`https:xxx.firebase.com/ingredients/${ingredientId}.json`, {
       method: 'DELETE',
        
-    }).then(response => {
+    }).then(response => { 
       setIsLoading(false);
-      setUserIngredients(preIngredient => preIngredient.id != ingredient.id)
-    }).catch(error => { 
-      setError(error.message);
+  setUserIngredients(preIngredient =>preIngredient.id !=ingredient.id)
+    })
 
-    });
-
-  }
-  const clearError = () => { 
-    setError(null);
-    setIsLoading(false);
   }
   
   
   return (
     <div className="App">
-      {error && <ErrorModa onClose={ clearError}>{error}</ErrorModal>};
-        
       <IngredientForm onAddIngredient={addIngredientHandler} />
 
       <section>
         <Search onLoadIngredients={filteredIngredientsHandler } />
         {/* Need to add list here! */}
-        <IngredientList ingredients={userIngredients} onRemoveItem={ removeIngredientHandler} />
+        <IngredientList ingredients={userIngredients} onRemoveItem={ ()=>{}} />
       </section>
     </div>
   );

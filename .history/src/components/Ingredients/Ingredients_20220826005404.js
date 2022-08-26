@@ -69,13 +69,12 @@ function Ingredients() {
   }
   const clearError = () => { 
     setError(null);
-    setIsLoading(false);
   }
   
   
   return (
     <div className="App">
-      {error && <ErrorModa onClose={ clearError}>{error}</ErrorModal>};
+      {error && <ErrorModal>{error}</ErrorModal>};
         
       <IngredientForm onAddIngredient={addIngredientHandler} />
 

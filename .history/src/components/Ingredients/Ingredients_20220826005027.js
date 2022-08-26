@@ -67,22 +67,16 @@ function Ingredients() {
     });
 
   }
-  const clearError = () => { 
-    setError(null);
-    setIsLoading(false);
-  }
   
   
   return (
     <div className="App">
-      {error && <ErrorModa onClose={ clearError}>{error}</ErrorModal>};
-        
       <IngredientForm onAddIngredient={addIngredientHandler} />
 
       <section>
         <Search onLoadIngredients={filteredIngredientsHandler } />
         {/* Need to add list here! */}
-        <IngredientList ingredients={userIngredients} onRemoveItem={ removeIngredientHandler} />
+        <IngredientList ingredients={userIngredients} onRemoveItem={ ()=>{}} />
       </section>
     </div>
   );
