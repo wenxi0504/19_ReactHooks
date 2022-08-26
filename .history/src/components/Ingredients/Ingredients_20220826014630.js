@@ -17,7 +17,6 @@ const ingredientReducer = (currentIngredients, action) => {
 };
 
 function Ingredients() {
-  //dispatch the option
   const [userIngredients,dispatch]=useReducer(ingredientReducer,[]);
   // const [userIngredients, setUserIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -41,11 +40,11 @@ function Ingredients() {
     });
    },[]);
  
-  
   const filteredIngredientsHandler = useCallback((filterIngredients) => {
-    // setUserIngredients(filterIngredients);
-    dispatch({ type: 'SET', ingredients:filterIngredients});
+    setUserIngredients(filterIngredients);
   }, []);
+
+
  
  
   const addIngredientHandler = ingredient => { 
@@ -58,11 +57,10 @@ function Ingredients() {
       setIsLoading(false);
       return response.json();
     }).then(responseData => { 
-    //    response.json();
-    //    setUserIngredients(preIngredient => [...preIngredient, {
-    //   id: responseData.name,...ingredient
-    // }]);
-      dispatch({ type: 'ADD', ingredient: {id: responseData.name,...ingredient} })
+       response.json();
+       setUserIngredients(preIngredient => [...preIngredient, {
+      id: responseData.name,...ingredient
+    }]);
 
     });
   }
@@ -74,14 +72,11 @@ function Ingredients() {
        
     }).then(response => {
       setIsLoading(false);
-      // setUserIngredients(preIngredient => preIngredient.id != ingredient.id)
-      dispatch({type:'Delete',id:ingredientId});
-    
+      setUserIngredients(preIngredient => preIngredient.id != ingredient.id)
     }).catch(error => { 
       setError(error.message);
-      
-    }
-    );
+
+    });
 
   }
   const clearError = () => { 

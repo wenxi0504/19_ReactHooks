@@ -5,21 +5,8 @@ import IngredientList from './IngredientList';
 import ErrorModal from '../UI//ErrorModal';
 import Search from './Search';
 
-const ingredientReducer = (currentIngredients, action) => { 
-  switch (action.type) { 
-    case 'SET': return action.ingredient;
-    case 'ADD': return [...currentIngredients, action.ingredient];
-    case 'DELETE': return currentIngredients.filter(ing => ing.id !== action.id);
-    default:
-      throw new Error('Should not get there!');
-
-  }
-};
-
 function Ingredients() {
-  //dispatch the option
-  const [userIngredients,dispatch]=useReducer(ingredientReducer,[]);
-  // const [userIngredients, setUserIngredients] = useState([]);
+  const [userIngredients, setUserIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
@@ -41,11 +28,11 @@ function Ingredients() {
     });
    },[]);
  
-  
   const filteredIngredientsHandler = useCallback((filterIngredients) => {
-    // setUserIngredients(filterIngredients);
-    dispatch({ type: 'SET', ingredients:filterIngredients});
+    setUserIngredients(filterIngredients);
   }, []);
+
+
  
  
   const addIngredientHandler = ingredient => { 
@@ -58,11 +45,10 @@ function Ingredients() {
       setIsLoading(false);
       return response.json();
     }).then(responseData => { 
-    //    response.json();
-    //    setUserIngredients(preIngredient => [...preIngredient, {
-    //   id: responseData.name,...ingredient
-    // }]);
-      dispatch({ type: 'ADD', ingredient: {id: responseData.name,...ingredient} })
+       response.json();
+       setUserIngredients(preIngredient => [...preIngredient, {
+      id: responseData.name,...ingredient
+    }]);
 
     });
   }
@@ -74,14 +60,11 @@ function Ingredients() {
        
     }).then(response => {
       setIsLoading(false);
-      // setUserIngredients(preIngredient => preIngredient.id != ingredient.id)
-      dispatch({type:'Delete',id:ingredientId});
-    
+      setUserIngredients(preIngredient => preIngredient.id != ingredient.id)
     }).catch(error => { 
       setError(error.message);
-      
-    }
-    );
+
+    });
 
   }
   const clearError = () => { 

@@ -74,14 +74,11 @@ function Ingredients() {
        
     }).then(response => {
       setIsLoading(false);
-      // setUserIngredients(preIngredient => preIngredient.id != ingredient.id)
-      dispatch({type:'Delete',id:ingredientId});
-    
+      setUserIngredients(preIngredient => preIngredient.id != ingredient.id)
     }).catch(error => { 
       setError(error.message);
-      
-    }
-    );
+
+    });
 
   }
   const clearError = () => { 
