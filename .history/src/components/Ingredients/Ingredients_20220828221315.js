@@ -105,15 +105,14 @@ function Ingredients() {
 
   }
   const clearError = () => { 
-    // setError(null);
-    // setIsLoading(false);
-    dispatchHttp({ type: 'CLEAR' });
+    setError(null);
+    setIsLoading(false);
   }
   
   
   return (
     <div className="App">
-      {httpState && <ErrorModal onClose={ clearError}>{error}</ErrorModal>};
+      {error && <ErrorModal onClose={ clearError}>{error}</ErrorModal>};
         
       <IngredientForm onAddIngredient={addIngredientHandler} />
 

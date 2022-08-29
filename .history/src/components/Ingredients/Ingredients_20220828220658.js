@@ -23,8 +23,6 @@ const httpReducer = (curHttpState, action) => {
       return {...curHttpState, loading:false }
     case 'ERROR':
       return { loading: false, error: action.errorData };
-    case 'CLEAR':
-      return {...curHttpState, error:null }
       default:throw new Error('Should not be reached!')
 
   }
@@ -74,7 +72,7 @@ function Ingredients() {
       body: JSON.stringify({ ingredient }),
       headers: {'Content-Type':'application/json'}   
     }).then(response => { 
-       dispatchHttp({ type: 'RESPONSE' });
+      setIsLoading(false);
       return response.json();
     }).then(responseData => { 
     //    response.json();
@@ -87,33 +85,31 @@ function Ingredients() {
   }
 
   const removeIngredientHandler = ingredient => { 
-    dispatchHttp({ type: 'DELETE' });
+    setIsLoading(true);
     fetch(`https:xxx.firebase.com/ingredients/${ingredientId}.json`, {
       method: 'DELETE',
        
     }).then(response => {
-      dispatchHttp({ type: 'RESPONSE' });
-      // setIsLoading(false);
+      setIsLoading(false);
       // setUserIngredients(preIngredient => preIngredient.id != ingredient.id)
       dispatch({type:'Delete',id:ingredientId});
     
     }).catch(error => { 
-      dispatchHttp({ type: 'ERROR',errorData:error.message });
+      setError(error.message);
       
     }
     );
 
   }
   const clearError = () => { 
-    // setError(null);
-    // setIsLoading(false);
-    dispatchHttp({ type: 'CLEAR' });
+    setError(null);
+    setIsLoading(false);
   }
   
   
   return (
     <div className="App">
-      {httpState && <ErrorModal onClose={ clearError}>{error}</ErrorModal>};
+      {error && <ErrorModal onClose={ clearError}>{error}</ErrorModal>};
         
       <IngredientForm onAddIngredient={addIngredientHandler} />
 

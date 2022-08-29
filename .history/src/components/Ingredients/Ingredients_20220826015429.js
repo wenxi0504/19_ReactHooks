@@ -16,30 +16,12 @@ const ingredientReducer = (currentIngredients, action) => {
   }
 };
 
-const httpReducer = (curHttpState, action) => { 
-  switch (action.type) { 
-    case 'SEND': return { loading: true, error: null };
-    case 'RESPONSE':
-      return {...curHttpState, loading:false }
-    case 'ERROR':
-      return { loading: false, error: action.errorData };
-    case 'CLEAR':
-      return {...curHttpState, error:null }
-      default:throw new Error('Should not be reached!')
-
-  }
-
-}
-
 function Ingredients() {
   //dispatch the option
   const [userIngredients,dispatch]=useReducer(ingredientReducer,[]);
   // const [userIngredients, setUserIngredients] = useState([]);
-  
-  const [httpState,dispatchHttp ] = useReducer(httpReduce, {loading:false,error:null});
-
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
 
  
   useEffect(() => {
@@ -67,14 +49,13 @@ function Ingredients() {
  
  
   const addIngredientHandler = ingredient => { 
-    // setIsLoading(true);
-    dispatchHttp({ type: 'SEND' });
+    setIsLoading(true);
     fetch('https:xxx.firebase.com/ingredients.json', {
       method: 'POST',
       body: JSON.stringify({ ingredient }),
       headers: {'Content-Type':'application/json'}   
     }).then(response => { 
-       dispatchHttp({ type: 'RESPONSE' });
+      setIsLoading(false);
       return response.json();
     }).then(responseData => { 
     //    response.json();
@@ -87,33 +68,31 @@ function Ingredients() {
   }
 
   const removeIngredientHandler = ingredient => { 
-    dispatchHttp({ type: 'DELETE' });
+    setIsLoading(true);
     fetch(`https:xxx.firebase.com/ingredients/${ingredientId}.json`, {
       method: 'DELETE',
        
     }).then(response => {
-      dispatchHttp({ type: 'RESPONSE' });
-      // setIsLoading(false);
+      setIsLoading(false);
       // setUserIngredients(preIngredient => preIngredient.id != ingredient.id)
       dispatch({type:'Delete',id:ingredientId});
     
     }).catch(error => { 
-      dispatchHttp({ type: 'ERROR',errorData:error.message });
+      setError(error.message);
       
     }
     );
 
   }
   const clearError = () => { 
-    // setError(null);
-    // setIsLoading(false);
-    dispatchHttp({ type: 'CLEAR' });
+    setError(null);
+    setIsLoading(false);
   }
   
   
   return (
     <div className="App">
-      {httpState && <ErrorModal onClose={ clearError}>{error}</ErrorModal>};
+      {error && <ErrorModa onClose={ clearError}>{error}</ErrorModal>};
         
       <IngredientForm onAddIngredient={addIngredientHandler} />
 

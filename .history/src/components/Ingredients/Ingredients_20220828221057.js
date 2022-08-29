@@ -23,8 +23,6 @@ const httpReducer = (curHttpState, action) => {
       return {...curHttpState, loading:false }
     case 'ERROR':
       return { loading: false, error: action.errorData };
-    case 'CLEAR':
-      return {...curHttpState, error:null }
       default:throw new Error('Should not be reached!')
 
   }
@@ -98,22 +96,21 @@ function Ingredients() {
       dispatch({type:'Delete',id:ingredientId});
     
     }).catch(error => { 
-      dispatchHttp({ type: 'ERROR',errorData:error.message });
+      dispatchHttp({ type: 'ERROR',errorData });
       
     }
     );
 
   }
   const clearError = () => { 
-    // setError(null);
-    // setIsLoading(false);
-    dispatchHttp({ type: 'CLEAR' });
+    setError(null);
+    setIsLoading(false);
   }
   
   
   return (
     <div className="App">
-      {httpState && <ErrorModal onClose={ clearError}>{error}</ErrorModal>};
+      {error && <ErrorModal onClose={ clearError}>{error}</ErrorModal>};
         
       <IngredientForm onAddIngredient={addIngredientHandler} />
 
