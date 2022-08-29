@@ -9,11 +9,11 @@ const App = props => {
   // return <AuthContext.Consumer><Auth /></AuthContext.Consumer>;
   let content=<Auth/>
   if (AuthContext.isAuth) { 
-    content = <Ingredients />;
+    content=<Ingredients/>
 
 
   }
-  return content;
+  return <Auth/>
 };
 
 export default App;

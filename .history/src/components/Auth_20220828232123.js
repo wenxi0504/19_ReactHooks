@@ -6,7 +6,7 @@ import './Auth.css';
 const Auth = props => {
   const AuthContext = useContext(AuthContext);
   const loginHandler = () => {
-    AuthContext.login();
+    AuthContext.lohin();
   };
 
   return (

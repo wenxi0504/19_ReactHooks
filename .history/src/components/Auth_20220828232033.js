@@ -5,9 +5,7 @@ import './Auth.css';
 
 const Auth = props => {
   const AuthContext = useContext(AuthContext);
-  const loginHandler = () => {
-    AuthContext.login();
-  };
+  const loginHandler = () => {};
 
   return (
     <div className="auth">
