@@ -88,27 +88,24 @@ function Ingredients() {
     });
   }
 
-  const removeIngredientHandler = useCallback(ingredientId => {
-    sendRequest(`https://xxxx/ingredients/${ingredientId}.json`,'DELETE')
-
-
-    // dispatchHttp({ type: 'DELETE' });
-    // fetch(`https:xxx.firebase.com/ingredients/${ingredientId}.json`, {
-    //   method: 'DELETE',
+  const removeIngredientHandler = ingredient => { 
+    dispatchHttp({ type: 'DELETE' });
+    fetch(`https:xxx.firebase.com/ingredients/${ingredientId}.json`, {
+      method: 'DELETE',
        
-    // }).then(response => {
-    //   dispatchHttp({ type: 'RESPONSE' });
-    //   // setIsLoading(false);
-    //   // setUserIngredients(preIngredient => preIngredient.id != ingredient.id)
-    //   dispatch({ type: 'Delete', id: ingredientId });
+    }).then(response => {
+      dispatchHttp({ type: 'RESPONSE' });
+      // setIsLoading(false);
+      // setUserIngredients(preIngredient => preIngredient.id != ingredient.id)
+      dispatch({type:'Delete',id:ingredientId});
     
-    // }).catch(error => {
-    //   dispatchHttp({ type: 'ERROR', errorData: error.message });
+    }).catch(error => { 
+      dispatchHttp({ type: 'ERROR',errorData:error.message });
       
-    // }
-    // );
+    }
+    );
 
-  }, [sendRequest]);
+  }
   const clearError = () => { 
     // setError(null);
     // setIsLoading(false);
