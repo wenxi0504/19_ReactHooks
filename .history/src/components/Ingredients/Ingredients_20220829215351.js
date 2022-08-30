@@ -38,20 +38,10 @@ function Ingredients() {
   // const [userIngredients, setUserIngredients] = useState([]);
   
   // const [httpState,dispatchHttp ] = useReducer(httpReduce, {loading:false,error:null});
-  const { isLoading,error,data,sendRequest,reqExtra} =useHttp();
+  const { isLoading,error,data,sendRequest} =useHttp();
 
   // const [isLoading, setIsLoading] = useState(false);
   // const [error, setError] = useState();
-
-  useEffect(() => { 
-    if (reqExtra) { 
-      dispatch({type:'DELETE',id:reqExtra})
-
-    }
-    
-
-
-  },[data,reqExtra])
 
  
   //build a custom hook http.js
@@ -100,7 +90,7 @@ function Ingredients() {
   }
 
   const removeIngredientHandler = useCallback(ingredientId => {
-    sendRequest(`https://xxxx/ingredients/${ingredientId}.json`,'DELETE',null,ingredientId)
+    sendRequest(`https://xxxx/ingredients/${ingredientId}.json`,'DELETE')
 
 
     // dispatchHttp({ type: 'DELETE' });
@@ -120,7 +110,6 @@ function Ingredients() {
     // );
 
   }, [sendRequest]);
-
   const clearError = () => { 
     // setError(null);
     // setIsLoading(false);

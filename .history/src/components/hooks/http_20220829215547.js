@@ -25,8 +25,8 @@ const useHttp = () => {
         extra:null
     })
 
-    const sendRequest =useCallback( (url, method, body,reqExtra) => {
-        dispatch({ typeL: 'SEND' ,extra:reqExtra});
+    const sendRequest =useCallback( (url, method, body) => {
+        dispatch({ typeL: 'SEND' });
         fetch(
             url, {
             method: method,
@@ -54,8 +54,7 @@ const useHttp = () => {
         isLoading: httpState.loading,
         data: httpState.data,
         error: httpState.error,
-        sendRequest: sendRequest,
-        reqExtra: httpState.extra
+        sendRequest:sendRequest
         
     };
 

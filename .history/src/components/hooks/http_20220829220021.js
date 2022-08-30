@@ -54,8 +54,7 @@ const useHttp = () => {
         isLoading: httpState.loading,
         data: httpState.data,
         error: httpState.error,
-        sendRequest: sendRequest,
-        reqExtra: httpState.extra
+        sendRequest:sendRequest
         
     };
 
